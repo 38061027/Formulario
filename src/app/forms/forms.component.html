@@ -1,0 +1,131 @@
+<form
+  [formGroup]="cadastroForm"
+  (ngSubmit)="submitForm()"
+  class="container-form"
+  #formDir="ngForm"
+>
+  <div class="title">
+    <h1>Cadastro Dev's</h1>
+    <p>Complete todas as informações</p>
+  </div>
+
+  <fieldset class="container-box">
+
+    <div>
+      <label>Nome</label>
+      <input type="text" formControlName="nome" required/>
+      <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="validators-erro">
+        <p class="message-erro">É obrigatorio preencher esse campo</p>
+      </div>
+  </div>
+
+    <div>
+      <label>Sobrenome</label>
+      <input type="text" formControlName="sobrenome" required/>
+      <div *ngIf="sobrenome.invalid && (sobrenome.dirty || sobrenome.touched)" class="validators-erro">
+        <p class="message-erro">É obrigatorio preencher esse campo</p>
+      </div>
+    </div>
+
+    <div>
+      <label>Email</label>
+      <input type="text" formControlName="email" required=""/>
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="validators-erro">
+        <p class="message-erro">É obrigatorio preencher esse campo</p>
+      </div>
+    </div>
+
+    <div class="stack">
+      <div><label class="label-stack">Qual é a sua Stack?</label></div>
+      <br />
+      <input
+        type="radio"
+        name="stack"
+        value="Front-End"
+        formControlName="stack"
+      />
+      <label>Front-End</label>
+      <input
+        type="radio"
+        name="stack"
+        value="Back-End"
+        formControlName="stack"
+      />
+      <label>Back-End</label>
+      <input
+        type="radio"
+        name="stack"
+        value="Full-Stack"
+        formControlName="stack"
+      />
+      <label>Full-Stack</label>
+    </div>
+
+    <div>
+      <select name="" id="" formControlName="nivel">
+        <option value="">Selecione o Nível</option>
+        <option *ngFor="let item of nivellist" [value]="item.nivel">
+          {{ item.nivel }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label>Selecione as linguagens de programação</label>
+
+      <br />
+
+      <label for="todo" *ngFor="let item of langlist">
+        <input
+          type="checkbox"
+          name="linguagem"
+          id="todo"
+          formControlName="linguagens"
+        />
+        {{ item.lang }}
+      </label>
+    </div>
+
+    <div>
+      <label>Selecione as tecnologias de estilização:</label>
+
+      <br />
+      <label for="style" *ngFor="let item of stylelist">
+        <input
+          type="checkbox"
+          name="estilo"
+          id="style"
+          formControlName="estilo"
+        />
+        {{ item.style }}
+      </label>
+    </div>
+
+    <div>
+      <label>Selecione os Frameworks:</label>
+      <br />
+      <label for="frame" *ngFor="let item of framelist">
+        <input
+          type="checkbox"
+          name="framework"
+          id="frame"
+          formControlName="frameworks"
+        />
+        {{ item.framework }}
+      </label>
+    </div>
+
+    <div>
+      <label> Fale um pouco sobre você:</label>
+      <br />
+      <textarea name="textarea" id="" cols="10" rows="5" formControlName="textarea"></textarea>
+      <div *ngIf="textarea.invalid && textarea.dirty" class="validators-erro">
+        <p class="validators-erro">A descrição deve ter no mínimo 10 caracteres.</p>
+      </div>
+    </div>
+
+    <div class="btn-submit">
+      <button [disabled]="cadastroForm.invalid" [ngClass]="{'button-disabled': cadastroForm.invalid, 'button-enabled': cadastroForm.valid}" class="btn">Enviar</button>
+    </div>
+  </fieldset>
+</form>
