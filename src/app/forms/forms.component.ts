@@ -83,6 +83,7 @@ export class FormsComponent {
     return this.cadastroForm.get('textarea')!
   }
 
+
   get nome(){
     return this.cadastroForm.get('nome')!
   }
